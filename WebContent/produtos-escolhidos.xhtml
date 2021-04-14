@@ -11,8 +11,14 @@ xmlns:p="http://primefaces.org/ui">
 	<ui:define name="pagina">
 			
 		<h:form id="produtosEscolhidos">
-			<p:outputLabel value="Nenhum produto escolhido" 
-			 rendered="#{empty produtosEscolhidosController.listaProdutosEscolhidos}"/>
+			<div class="text-center">
+				<p:outputLabel rendered="#{empty produtosEscolhidosController.listaProdutosEscolhidos}" >
+				<i class="bi bi-shop" style="font-size:70px; color: #00753B"></i>
+				<h4>Nenhum produto escolhido ainda! Adicione um produto na loja.</h4>
+				<p:commandButton value="Acesse nossa loja!" action="buscar-produtos.xhtml" ajax="false"/>
+				</p:outputLabel>
+				<p:outputLabel style="font-size: 30px;"	rendered="#{empty produtosEscolhidosController.listaProdutosEscolhidos}"/>
+			</div>
 			<p:dataTable id="tabelaProdutosEscolhidos" var="produto" 
 			value="#{produtosEscolhidosController.listaProdutosEscolhidos}" 
 			rendered="#{not empty produtosEscolhidosController.listaProdutosEscolhidos}" >

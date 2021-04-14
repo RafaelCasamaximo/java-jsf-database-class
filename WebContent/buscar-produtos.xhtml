@@ -12,41 +12,43 @@ xmlns:p="http://primefaces.org/ui">
 	
 	
 		<h:form id="produtos">
-			<h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
-				<p:outputLabel for="input" value="Produto:" />
-				<p:inputText id="input" value="#{produtoController.produto.nome}" />
-				<p:commandButton update="produtos" value="Buscar" action="#{produtoController.buscarPorNome}"></p:commandButton>
-			</h:panelGrid>
+			<div class="mt-4 mb-4">
+				<h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+					<p:outputLabel for="input" value="Produto:" />
+					<p:inputText id="input" value="#{produtoController.produto.nome}" />
+					<p:commandButton update="produtos" value="Buscar" action="#{produtoController.buscarPorNome}"></p:commandButton>
+				</h:panelGrid>
+			</div>
 			
 			<p:growl id="growl"/>
 			
 			<p:dataTable id="tabelaProdutos" var="produto" value="#{produtoController.listaProdutos}" rendered="#{not empty produtoController.listaProdutos}">
 				
 				<p:column headerText="Quantidade">
-					<p:inputText id="quantidadeInput" value="#{produto.quantidade}"></p:inputText>
+					<p:inputText style="width: 100%" id="quantidadeInput" value="#{produto.quantidade}"></p:inputText>
 				</p:column>
 				
 				<p:column headerText="Nome">
-					<p:inputText id="nomeInput" value="#{produto.nome}"></p:inputText>
+					<p:inputText style="width: 100%" id="nomeInput" value="#{produto.nome}"></p:inputText>
 				</p:column>
 				
 				<p:column headerText="Preço">
-					<p:inputText id="precoInput" value="#{produto.preco}"></p:inputText>
+					<p:inputText style="width: 100%" id="precoInput" value="#{produto.preco}"></p:inputText>
 				</p:column>
 				
-				<p:column headerText="Remover">
+				<p:column style="text-align: center;" headerText="Remover">
 					<p:commandButton update="tabelaProdutos" value="Remover" icon="ui-icon-closethick"
 					action="#{produtoController.remover(produto)}" styleClass="ui-priority-primary">
 	               	</p:commandButton>
 				</p:column>
 				
-				<p:column>
+				<p:column style="text-align: center;" headerText="Alterar">
 					<p:commandButton update="produtos:growl" value="Alterar" icon="ui-icon-update" action="#{produtoController.alterar(produto)}">
 					<f:ajax execute="@form" render="@form"/>
 					</p:commandButton>
 				</p:column>
 				
-				<p:column>
+				<p:column style="text-align: center;" headerText="Adicionar ao Carrinho">
 					<p:commandButton update="produtos:growl" value="Adicionar ao Carrinho" icon="ui-icon-check"
 					action="#{produtosEscolhidosController.adicionarEscolhido(produto)}">
 					</p:commandButton>
